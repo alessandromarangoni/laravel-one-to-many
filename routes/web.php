@@ -1,7 +1,7 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\portfolioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])
 ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
-->namespace('Admin') //definisce il namespace per i Controller chiamati in questo gruppo
 ->name('admin.') //definisce il pattern con cui generare i nomi delle rotte cioè "admin.qualcosa"
 ->group(function () {
 
@@ -30,7 +29,8 @@ Route::middleware(['auth'])
     // - il controller DashboardController appartiene al namespace Admin
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-});
+    Route::resource('portfolio', portfolioController::class);
 
+});
 
 require __DIR__.'/auth.php';
