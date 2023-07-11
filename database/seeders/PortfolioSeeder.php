@@ -16,12 +16,12 @@ class PortfolioSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 10; $i++) { 
-            $post = new portfolio();
-            $post->title = $faker->sentence(3);
-            $post->content = $faker->text(500);
-            $post->image = $faker->imageUrl(800, 600, 'job', true);
-            $post->save();
+        for ($i=0; $i < 10; $i++) {
+            $project = new portfolio();
+            $project->title = $faker->sentence(3);
+            $project->content = $faker->text(500);
+            $project->image = $faker->imageUrl(800, 600, 'job', true);
+            $project->save();
         }
     }
 }

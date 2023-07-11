@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Reference\Reference;
 
 return new class extends Migration
 {
@@ -14,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('portfolios', function (Blueprint $table) {
-            $table->id();
-            $table->string("title", 250);
-            $table->text("content")->nullable();
-            $table->string("image", 250)->nullable();
-            $table->timestamps();
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->foreignId('type_id')->nullable()->constrained();
         });
     }
 
@@ -30,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolios');
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->dropforeign('portfolios_type_id_foreign')->nullable()->constrained();
+            $table->dropColumn('type_id');
+        });
     }
 };
