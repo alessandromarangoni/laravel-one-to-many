@@ -28,6 +28,14 @@
     
                 <label for="image">URL Immagine</label>
                 <input type="text" name="image" id="image" value="{{ old("image") }}" class="form-control mb-4">
+
+                <label for="type_id">Categoria</label>
+                <select class="form-control mb-4" name="type_id" id="type_id">
+                    <option value="" selected disabled>tipo</option>
+                    @foreach ($types as $type)
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
     
                 <input type="submit" class="btn btn-primary form-control mb-4" value="Crea post">
     

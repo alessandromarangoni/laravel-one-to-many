@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\portfolio;
+use App\Models\type;
 use App\Http\Requests\StoreportfolioRequest;
 use App\Http\Requests\UpdateportfolioRequest;
+
+use function PHPSTORM_META\type;
 
 class PortfolioController extends Controller
 {
@@ -27,7 +30,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = type::all();
+        return view('admin.projects.create',compact('types'));
     }
 
     /**
@@ -39,7 +43,6 @@ class PortfolioController extends Controller
     public function store(StoreportfolioRequest $request)
     {
         $data = $request->validated();
-
         $newPortfolio = new Portfolio();
         $newPortfolio->fill($data);
         $newPortfolio->save();
