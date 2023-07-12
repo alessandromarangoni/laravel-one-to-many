@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $portfolio->title }}</h5>
                     <p class="card-text">{{ $portfolio->content }}</p>
+                    <h3>{{$portfolio->type->name}}</h3>
                 </div>
             </div>
     </div>

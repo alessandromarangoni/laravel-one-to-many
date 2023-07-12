@@ -14,5 +14,10 @@ class portfolio extends Model
         "title",
         "content",
         "image",
+        'type_id'
     ];
+
+    public function type(){
+        return $this->belongsTo(type::class);
+    }
 }
